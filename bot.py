@@ -1,6 +1,8 @@
 import discord
 import logging
 
+from discord import Game
+
 # very secure and secret file,.... ssshhhh
 import config
 
@@ -20,6 +22,11 @@ logging.basicConfig(
 @client.event
 async def on_ready():
     logging.info("Bot logged in successfully!")
+    client.change_presence(game=Game(name="What an amazing Python bot!"))
+
+@client.event
+async def on_message(message):
+    logging.info("I got following message: " + message.content + " | by " + message.author.name)
 
 
 client.run(config.token)
