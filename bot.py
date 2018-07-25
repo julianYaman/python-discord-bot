@@ -26,13 +26,13 @@ commands = {
 
 
 @client.event
-async def on_ready():
+async def on_ready() -> None:
     logging.info("Bot logged in successfully!")
     client.change_presence(game=Game(name="What an amazing Python bot!"))
 
 
 @client.event
-async def on_message(message):
+async def on_message(message) -> None:
     # logging.info("I got following message: " + message.content + " | by " + message.author.name)
     if message.content.startswith(config.prefix):
         command = message.content[1:].split(" ")[0]
