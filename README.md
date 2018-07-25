@@ -1,2 +1,3 @@
 # python-discord-bot
-Another bot developed in Python. (just for test purposes)
+
+You´ll find a very basic bot in here. It can do.... *nothing* 😲😲.
