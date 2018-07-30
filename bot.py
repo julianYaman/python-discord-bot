@@ -2,7 +2,7 @@ import discord
 import logging
 
 from discord import Game, Embed
-from commands import ping
+from commands import cmd_help, cmd_ping
 
 # very secure and secret file,.... ssshhhh
 import config
@@ -21,7 +21,8 @@ logging.basicConfig(
 )
 
 commands = {
-    "ping": ping
+    "help": cmd_help,
+    "ping": cmd_ping
 }
 
 
@@ -46,7 +47,7 @@ async def on_message(message) -> None:
             await client.send_message(message.channel,
                                       embed=Embed
                                       (color=discord.Color.red(),
-                                       description=f"The command {command} is not available!"))
+                                       description=f"The command **{command}** is not available!"))
 
 
 client.run(config.token)
