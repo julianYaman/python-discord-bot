@@ -3,14 +3,6 @@ import logging
 from typing import List, Optional
 from discord import Embed
 
-LOGGING_FORMAT = \
-'[%(asctime)s] - [%(levelname)s] - [%(funcName)s] - %(message)s -> %(filename)s'
-
-logging.basicConfig(
-    level=logging.INFO,
-    format=LOGGING_FORMAT
-)
-
 
 async def execute(args: List, message, client, command: str, *commands) -> None:
 
