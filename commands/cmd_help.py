@@ -1,11 +1,33 @@
 import discord
-from typing import List
+import logging
+from typing import List, Optional
 from discord import Embed
 
+LOGGING_FORMAT = \
+'[%(asctime)s] - [%(levelname)s] - [%(funcName)s] - %(message)s -> %(filename)s'
 
-# Work in progress
-async def execute(args: List, message, client, command: str) -> None:
+logging.basicConfig(
+    level=logging.INFO,
+    format=LOGGING_FORMAT
+)
 
-    await client.send_message(message.channel,
-                              embed=Embed(color=discord.Color.green(),
-                                          description="Help command"))
+
+async def execute(args: List, message, client, command: str, *commands) -> None:
+
+    if commands:
+        help_description = ""
+
+        for cmd in commands[0].keys():
+            help_description = help_description + f"**-{cmd}**\n\n"
+
+        await client.send_message(message.channel,
+                                  embed=Embed(color=discord.Color.green(),
+                                              description=help_description,
+                                              title="All commands:"))
+
+    else:
+        logging.critical("Issue in the execution of the command! No 'commands' argument given!")
+        await client.send_message(message.channel,
+                                  embed=Embed
+                                  (color=discord.Color.red(),
+                                   description=f"ERROR. There was a problem while executing the command. Sorry."))
