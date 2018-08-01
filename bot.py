@@ -20,8 +20,14 @@ logging.basicConfig(
 )
 
 commands = {
-    "help": cmd_help,
-    "ping": cmd_ping
+    "help": {
+        "description": "With this command, you get this message showing all commands of this bot.",
+        "script": cmd_help
+    },
+    "ping": {
+        "description": "You guessed it!",
+        "script": cmd_ping
+    },
 }
 
 
@@ -43,9 +49,9 @@ async def on_message(message) -> None:
                 f"Got an valid command: '{command}' from {message.author.name} on this server: {message.server.name}")
             # If command is help
             if command == "help":
-                await commands.get(command).execute(args, message, client, command, commands)
+                await commands.get(command).get("script").execute(args, message, client, command, commands)
             else:
-                await commands.get(command).execute(args, message, client, command)
+                await commands.get(command).get("script").execute(args, message, client, command)
         else:
             await client.send_message(message.channel,
                                       embed=Embed
