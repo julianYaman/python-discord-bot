@@ -12,8 +12,7 @@ import config
 client = discord.Client()
 
 # logging configuration
-LOGGING_FORMAT = \
-'[%(asctime)s] - [%(levelname)s] - [%(funcName)s] - %(message)s -> %(filename)s'
+LOGGING_FORMAT = '[%(asctime)s] - [%(levelname)s] - [%(funcName)s] - %(message)s -> %(filename)s'
 
 logging.basicConfig(
     level=logging.INFO,
